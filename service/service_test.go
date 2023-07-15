@@ -101,3 +101,21 @@ func (suite *ServiceTestSuite) TestUpdate() {
 
 	suite.Require().NoError(err)
 }
+
+func (suite *ServiceTestSuite) TestDelete() {
+	//Input
+	req := model.DeleteRequest{
+		User: "user",
+	}
+	id := 1
+
+	//expected
+
+	suite.mockRepository.EXPECT().Delete(id).Return(nil)
+	suite.mockTransaction.EXPECT().Log([]string(nil), []interface{}(nil), req.User, id, "DELETE").Return(nil)
+
+	//function test
+	err := suite.service.DeleteBeer(id, req)
+
+	suite.Require().NoError(err)
+}

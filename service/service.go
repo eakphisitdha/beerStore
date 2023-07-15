@@ -10,7 +10,7 @@ import (
 
 //go:generate mockery --with-expecter --name "IService" --output $PWD/mocks
 type IService interface {
-	GetBeers(req model.GetRequest) []model.BeerResponse
+	GetBeers(req model.GetRequest) ([]model.BeerResponse, error)
 	AddBeer(req model.AddRequest) error
 	UpdateBeer(req model.UpdateRequest) error
 	DeleteBeer(id int, req model.DeleteRequest) error
@@ -25,16 +25,17 @@ func NewService(r repository.IRepository, t transaction.ITransaction) IService {
 	return &Service{r: r, t: t}
 }
 
-func (s *Service) GetBeers(req model.GetRequest) []model.BeerResponse {
+func (s *Service) GetBeers(req model.GetRequest) ([]model.BeerResponse, error) {
 	if req.Page == 0 {
 		req.Page = 1
 	}
 	if req.PageSize == 0 {
-		req.PageSize = 3
+		req.PageSize = 10
 	}
 	beers, err := s.r.Find(req)
 	if err != nil {
 		log.Println(err.Error())
+		return nil, err
 	}
 	var response []model.BeerResponse
 	for _, beer := range beers {
@@ -52,7 +53,7 @@ func (s *Service) GetBeers(req model.GetRequest) []model.BeerResponse {
 		}
 		response = append(response, res)
 	}
-	return response
+	return response, nil
 }
 
 func (s *Service) AddBeer(req model.AddRequest) error {

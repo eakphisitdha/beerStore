@@ -32,12 +32,16 @@ func (h *Handler) Get(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	beer := h.s.GetBeers(req)
-	if beer == nil {
+	response, err := h.s.GetBeers(req)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
+		return
+	}
+	if response == nil {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Not found the " + req.Name})
 		return
 	}
-	c.JSON(http.StatusOK, beer)
+	c.JSON(http.StatusOK, response)
 }
 
 func (h *Handler) Add(c *gin.Context) {

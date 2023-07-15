@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb:latest
+    hostname: mariadb
+    volumes:
+      - ./schema:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - "MYSQL_ROOT_HOST=%"
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    hostname: phpmyadmin
+    ports:
+      - 9999:80
+    environment:
+      - PMA_HOST=mariadb
+      
+  mongodb:
+    image: mongo:latest
+    hostname: mongodb
+    ports:
+      - 27017:27017

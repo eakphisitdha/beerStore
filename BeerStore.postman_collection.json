@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "/beer",
+			"name": "/beer (no filter)",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Heineken\",\r\n    \"page\":1,\r\n    \"pageSize\":10\r\n}",
+					"raw": "{\r\n    \"page\":1,\r\n    \"pageSize\":10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -34,101 +34,40 @@
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "no filter",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"page\":1,\r\n    \"pageSize\":10\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/beer",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"beer"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 13 Jul 2023 13:51:40 GMT"
-						},
-						{
-							"key": "Content-Length",
-							"value": "75"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"ID\": 1,\n        \"Name\": \"Beer A\",\n        \"Detail\": \"This is Beer A\",\n        \"URL\": \"This is Beer A\"\n    }\n]"
-				},
-				{
-					"name": "with name filter",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Guinness\",\r\n    \"page\":1,\r\n    \"pageSize\":10\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/beer",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"beer"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 13 Jul 2023 13:51:40 GMT"
-						},
-						{
-							"key": "Content-Length",
-							"value": "75"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"ID\": 1,\n        \"Name\": \"Beer A\",\n        \"Detail\": \"This is Beer A\",\n        \"URL\": \"This is Beer A\"\n    }\n]"
-				}
-			]
+			"response": []
 		},
 		{
-			"name": "/beer",
+			"name": "/beer (with filter)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Guinness\",\r\n    \"page\":1,\r\n    \"pageSize\":10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9000/beer",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"beer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/beer (add full data)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -152,77 +91,43 @@
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "add full data",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"name\":\"Chang\",\r\n    \"type\":\"Pale Lager\",\r\n    \"detail\":\"เบียร์แบรนด์ Chang\",\r\n    \"url\":\"https://example.com/chang.jpg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/beer",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"beer"
-							]
-						}
-					},
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": null
-				},
-				{
-					"name": "add some data",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"name\":\"Cheer\",\r\n    \"url\":\"https://example.com/cheer.jpg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/beer",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"beer"
-							]
-						}
-					},
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": null
-				}
-			]
+			"response": []
 		},
 		{
-			"name": "/beer/:id",
+			"name": "/beer (add some data)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"name\":\"Cheer\",\r\n    \"url\":\"https://example.com/cheer.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9000/beer",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"beer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/beer/:id (update full data)",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"name\":\"LEO 2\",\r\n    \"type\":\"Pale Lager\",\r\n    \"detail\":\"เบียร์แบรนด์ LEO 2\",\r\n    \"url\":\"https://example.com/LEO2.jpg\"\r\n}",
+					"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"name\":\"Chang\",\r\n    \"type\":\"Pale Lager\",\r\n    \"detail\":\"เบียร์แบรนด์ Chang\",\r\n    \"url\":\"https://example.com/chang.jpg\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -241,78 +146,35 @@
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "update full data",
-					"originalRequest": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"name\":\"Chang 2\",\r\n    \"type\":\"Pale Lager\",\r\n    \"detail\":\"เบียร์แบรนด์ Chang 2\",\r\n    \"url\":\"https://example.com/chang2.jpg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/beer/30",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"beer",
-								"30"
-							]
+			"response": []
+		},
+		{
+			"name": "/beer/:id (update some data)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"type\":\"Pale Lager\",\r\n    \"detail\":\"เบียร์แบรนด์ Cheer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					},
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": ""
+					}
 				},
-				{
-					"name": "update some data",
-					"originalRequest": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\":\"Gantong\",\r\n    \"type\":\"Pale Lager\",\r\n    \"detail\":\"เบียร์แบรนด์ Cheer2\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:9000/beer/30",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"beer",
-								"30"
-							]
-						}
-					},
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": null
+				"url": {
+					"raw": "localhost:9000/beer/30",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"beer",
+						"30"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
 			"name": "/beer/:id",
@@ -321,7 +183,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user\":\"gantong\"\r\n}",
+					"raw": "{\r\n    \"user\":\"Gantong\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
